@@ -34,5 +34,5 @@ npm i && npm run dev
 ### Run in docker
 
 ```sh
-docker compose up app
+docker compose up
 ```

@@ -16,6 +16,14 @@ cp ./.env.sample > .env.dev
 
 Then add your own api key, db url etc.
 
+Or if running in Docker
+
+
+```sh
+cp ./.env.sample > .env.dev
+```
+And fill out accordingly.
+
 ### Migrate Database
 
 ```sh

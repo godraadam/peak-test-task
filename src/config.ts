@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import { z } from "zod";
 
-const appModes = ["dev", "stage", "prod", "test"] as const;
+const appModes = ["dev", "stage", "prod", "test", "docker"] as const;
 type AppMode = (typeof appModes)[number];
 
 // based on APP_MODE env var, get the correct .env file
@@ -22,6 +22,7 @@ const dotEnvMap: Record<AppMode, `.env.${AppMode}`> = {
   stage: ".env.stage",
   prod: ".env.prod",
   test: ".env.test",
+  docker: ".env.docker",
 } as const;
 
 // load values from .env into process.env

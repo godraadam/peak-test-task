@@ -5,7 +5,7 @@
   "author": "godra.adan@gmail.com",
   "scripts": {
     "dev": "tsx watch ./src/app.ts",
-    "build": "tsc"
+    "build": "tsc && tscpaths -p tsconfig.json -s ./ -o ./dist"
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
@@ -23,6 +23,7 @@
     "@types/node": "^22.15.24",
     "@types/pg": "^8.15.2",
     "drizzle-kit": "^0.31.1",
+    "tscpaths": "^0.0.9",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }

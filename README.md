@@ -62,13 +62,10 @@ They are found in the `http` folder, and they can be run (for example) with the 
 - [Zod](https://zod.dev/)
 - Docker
 
-## Design choices
+## Remarks
 
-- I chose to simply store stock price updates in their own table, and then calculate currrent price and rolling average, on-demand based on them. However, if the request count/second is expected to be high it would be more efficient to calulcate that every time we fetch stock information and to save it, instead of doing that calulcation for every request.
+- I chose to simply store stock price updates in their own table, and then calculate currrent price and rolling average, on-demand based on them. However, if the request count/second is expected to be high it would be more efficient to calculate that every time we fetch stock information and to save it, instead of doing that calculation for every request.
 - I didn't find any stock API that would let me query current price for multiple stocks in one request, so had to resort to making a requests for each one separately.
-
-## Project folder structure
-
-- Stuck to mostly standard split-by-responsibility (so services, api handlers, data access layer each in their corrresponding folder) instead of splitting the code by concern (all stock related stuff in stock folder, including router handler, service, dto, dao and the like), although I think former is more logical.
+- Stuck to mostly standard split-by-responsibility (so services, api handlers, data access layer each in their corrresponding folder) instead of splitting the code by concern (all stock related stuff in stock folder, including router handler, service, dto, dao and the like), although I think the former is more logical.
 
 

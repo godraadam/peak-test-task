@@ -5,24 +5,34 @@
   "author": "godra.adan@gmail.com",
   "scripts": {
     "dev": "tsx watch ./src/app.ts",
-    "build": "tsc && tscpaths -p tsconfig.json -s ./ -o ./dist"
+    "build": "tsc && tscpaths -p tsconfig.json -s ./ -o ./dist",
+    "lint": "eslint --ext .ts,.tsx --fix src  && prettier --write --log-level silent src"
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
+    "chalk": "^5.4.1",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.0",
     "drizzle-zod": "^0.6.1",
     "express": "^5.1.0",
+    "morgan": "^1.10.0",
     "node-cron": "^4.0.7",
     "pg": "^8.16.0",
     "wretch": "^2.11.0",
     "zod": "^3.25.36"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/express": "^5.0.2",
+    "@types/morgan": "^1.9.9",
     "@types/node": "^22.15.24",
     "@types/pg": "^8.15.2",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
     "drizzle-kit": "^0.31.1",
+    "drizzle-seed": "^0.3.1",
+    "eslint": "^8.56.0",
+    "prettier": "^3.5.3",
     "tscpaths": "^0.0.9",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"

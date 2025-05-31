@@ -1,14 +1,9 @@
-import {
-  pgTable,
-  text,
-  boolean,
-  numeric,
-  timestamp,
-} from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
-import { createId } from "@paralleldrive/cuid2";
-import z from "zod";
+import { boolean, numeric, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import type z from "zod";
+
+import { createId } from "@paralleldrive/cuid2";
 
 export const stocksTable = pgTable("stocks", {
   id: text().primaryKey().$defaultFn(createId),
@@ -33,9 +28,7 @@ export const stockCreatePayloadSchema = createInsertSchema(stocksTable).omit({
   updatedAt: true,
 });
 
-export const stockUpdatePayloadSchema = stockCreatePayloadSchema
-  .omit({ tickerSymbol: true })
-  .partial();
+export const stockUpdatePayloadSchema = stockCreatePayloadSchema.omit({ tickerSymbol: true }).partial();
 
 export const stockSelectSchema = createSelectSchema(stocksTable);
 

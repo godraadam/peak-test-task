@@ -1,7 +1,4 @@
-import {
-  bulkInsertStockPrices,
-  getStockPricesByStockId,
-} from "@/db/query/stock-price.query";
+import { bulkInsertStockPrices, getStockPricesByStockId } from "@/db/query/stock-price.query";
 import { getStocksToSync } from "@/db/query/stock.query";
 import type { StockSelect } from "@/db/schema/stocks.schema";
 import { fetchStockPricesFromFinnhub } from "@/lib/finnhub.lib";
@@ -21,9 +18,7 @@ export async function getStockPriceInfo(id: StockSelect["id"]) {
     offset: 0,
   });
 
-  const rollingAverage =
-    lastTenPrices.reduce((acc, price) => acc + price.value, 0) /
-    lastTenPrices.length;
+  const rollingAverage = lastTenPrices.reduce((acc, price) => acc + price.value, 0) / lastTenPrices.length;
 
   return {
     currentPrice: lastTenPrices[0]?.value,

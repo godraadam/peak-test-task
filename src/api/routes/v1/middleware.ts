@@ -1,31 +1,17 @@
 import type { Request, RequestHandler, Response } from "express";
-import z from "zod";
+import type z from "zod";
 
-export const validate = <
-  ParamsZod extends z.ZodType,
-  BodyZod extends z.ZodType,
-  QueryZod extends z.ZodType
->(
+export const validate = <ParamsZod extends z.ZodType, BodyZod extends z.ZodType, QueryZod extends z.ZodType>(
   validators: {
     params?: ParamsZod;
     body?: BodyZod;
     query?: QueryZod;
   },
   callback: (
-    req: Request<
-      z.output<ParamsZod>,
-      unknown,
-      z.output<BodyZod>,
-      z.output<QueryZod>
-    >,
-    res: Response
-  ) => Response | Promise<Response> | Promise<void>
-): RequestHandler<
-  z.output<ParamsZod>,
-  unknown,
-  z.output<BodyZod>,
-  z.output<QueryZod>
-> => {
+    req: Request<z.output<ParamsZod>, unknown, z.output<BodyZod>, z.output<QueryZod>>,
+    res: Response,
+  ) => Response | Promise<Response> | Promise<void>,
+): RequestHandler<z.output<ParamsZod>, unknown, z.output<BodyZod>, z.output<QueryZod>> => {
   return async (req, res, next) => {
     try {
       validators.params?.parse(req.params);

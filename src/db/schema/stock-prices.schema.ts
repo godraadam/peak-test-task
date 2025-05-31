@@ -1,10 +1,10 @@
-import { pgTable, text, numeric, timestamp } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
-import { createId } from "@paralleldrive/cuid2";
+import { numeric, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { createSelectSchema } from "drizzle-zod";
-import z from "zod";
+import type z from "zod";
 
 import { stocksTable } from "@/db/schema/stocks.schema";
+import { createId } from "@paralleldrive/cuid2";
 
 export const stockPricesTable = pgTable("stock_prices", {
   id: text().primaryKey().$defaultFn(createId),
@@ -18,17 +18,13 @@ export const stockPricesTable = pgTable("stock_prices", {
     .default(sql`now()`),
 });
 
-export const stockPriceCreatePayloadSchema = createSelectSchema(
-  stockPricesTable
-).omit({
+export const stockPriceCreatePayloadSchema = createSelectSchema(stockPricesTable).omit({
   id: true,
   createdAt: true,
 });
 
 // never really used but we can have it for later use
-export const stockPriceUpdatePayloadSchema = stockPriceCreatePayloadSchema
-  .omit({ stockId: true })
-  .partial();
+export const stockPriceUpdatePayloadSchema = stockPriceCreatePayloadSchema.omit({ stockId: true }).partial();
 export type StockPriceCreate = z.infer<typeof stockPriceCreatePayloadSchema>;
 
 export type StockPriceUpdate = z.infer<typeof stockPriceUpdatePayloadSchema>;

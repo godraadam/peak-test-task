@@ -1,15 +1,9 @@
 import { Router } from "express";
 import z from "zod";
 
-import { validate } from "@/api/routes/v1/middleware";
 import { paginationValidator } from "@/api/dto/pagination.dto";
-import {
-  getStockByTicker,
-  getStocks,
-  getTotalStocksCount,
-  insertStock,
-  updateStock,
-} from "@/db/query/stock.query";
+import { validate } from "@/api/routes/v1/middleware";
+import { getStockByTicker, getStocks, getTotalStocksCount, insertStock, updateStock } from "@/db/query/stock.query";
 import { stockCreatePayloadSchema } from "@/db/schema/stocks.schema";
 import { getStockPriceInfo } from "@/service/stock-prices.service";
 
@@ -30,8 +24,8 @@ stocksRouter.get(
         data: stocks,
         meta: { offset: payload.offset, limit: payload.limit, totalCount },
       });
-    }
-  )
+    },
+  ),
 );
 
 stocksRouter.get(
@@ -57,8 +51,8 @@ stocksRouter.get(
         symbol: stock.tickerSymbol,
         ...stockPriceInfo,
       });
-    }
-  )
+    },
+  ),
 );
 
 stocksRouter.post(
@@ -86,8 +80,8 @@ stocksRouter.post(
       }
 
       return res.status(201).send({ inserted });
-    }
-  )
+    },
+  ),
 );
 
 stocksRouter.put(
@@ -116,6 +110,6 @@ stocksRouter.put(
       const updated = await updateStock(maybeStock.id, payload);
 
       return res.send({ updated });
-    }
-  )
+    },
+  ),
 );

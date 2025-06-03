@@ -1,6 +1,7 @@
 import express from "express";
 import type { NextFunction, Request, Response } from "express";
 import cron from "node-cron";
+import "zod-openapi/extend";
 
 import { indexRouter } from "@/api/routes/index.router";
 import { loggingMiddleware } from "@/config/logging.config";

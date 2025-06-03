@@ -21,14 +21,30 @@ export const stocksTable = pgTable("stocks", {
     .default(sql`now()`),
 });
 
-export const stockCreatePayloadSchema = createInsertSchema(stocksTable).omit({
-  id: true,
-  createdAt: true,
-  rollingAvg: true,
-  updatedAt: true,
-});
+export const stockCreatePayloadSchema = createInsertSchema(stocksTable)
+  .omit({
+    id: true,
+    createdAt: true,
+    rollingAvg: true,
+    updatedAt: true,
+  })
+  .openapi({
+    description: "Payload for creating a new stock",
+    example: {
+      tickerSymbol: "AAPL",
+      sync: true,
+    },
+  });
 
-export const stockUpdatePayloadSchema = stockCreatePayloadSchema.omit({ tickerSymbol: true }).partial();
+export const stockUpdatePayloadSchema = stockCreatePayloadSchema
+  .omit({ tickerSymbol: true })
+  .partial()
+  .openapi({
+    description: "Payload for updating an existing stock",
+    example: {
+      sync: false,
+    },
+  });
 
 export const stockSelectSchema = createSelectSchema(stocksTable);
 

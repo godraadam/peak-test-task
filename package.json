@@ -18,8 +18,10 @@
     "morgan": "^1.10.0",
     "node-cron": "^4.0.7",
     "pg": "^8.16.0",
+    "swagger-ui-express": "^5.0.1",
     "wretch": "^2.11.0",
-    "zod": "^3.25.36"
+    "zod": "^3.25.36",
+    "zod-openapi": "^4.2.4"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
@@ -27,8 +29,9 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.15.24",
     "@types/pg": "^8.15.2",
-    "@typescript-eslint/eslint-plugin": "^8.33.0",
-    "@typescript-eslint/parser": "^8.33.0",
+    "@types/swagger-ui-express": "^4.1.8",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
     "drizzle-kit": "^0.31.1",
     "drizzle-seed": "^0.3.1",
     "eslint": "^8.56.0",

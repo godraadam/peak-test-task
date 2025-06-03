@@ -2,6 +2,7 @@ import { Router } from "express";
 import z from "zod";
 
 import { paginationValidator } from "@/api/dto/pagination.dto";
+import { getStockBySymbolValidator } from "@/api/dto/stocks.dto";
 import { validate } from "@/api/routes/v1/middleware";
 import { getStockByTicker, getStocks, getTotalStocksCount, insertStock, updateStock } from "@/db/query/stock.query";
 import { stockCreatePayloadSchema } from "@/db/schema/stocks.schema";
@@ -32,9 +33,7 @@ stocksRouter.get(
   "/:ticker",
   validate(
     {
-      params: z.object({
-        ticker: z.string().transform((it) => it.toUpperCase()),
-      }),
+      params: getStockBySymbolValidator,
     },
     async (req, res) => {
       const tickerSymbol = req.params.ticker;
